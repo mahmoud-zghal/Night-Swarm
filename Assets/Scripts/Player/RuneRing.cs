@@ -33,9 +33,18 @@ public class RuneRing : MonoBehaviour
         snapTimer = snapInterval;
     }
 
+    private void OnDisable()
+    {
+        ClearBlades();
+    }
+
     private void Update()
     {
         if (bladeCount <= 0) return;
+
+        RemoveDestroyedBlades();
+        if (blades.Count == 0 && bladeVisualPrefab != null)
+            RebuildBlades();
 
         UpdateOrbit();
 
@@ -57,19 +66,20 @@ public class RuneRing : MonoBehaviour
     private void UpdateOrbit()
     {
         if (blades.Count != bladeCount)
-        {
             RebuildBlades();
-        }
 
         angleOffset += orbitSpeed * Time.deltaTime;
         float step = 360f / Mathf.Max(1, bladeCount);
 
         for (int i = 0; i < blades.Count; i++)
         {
+            var blade = blades[i];
+            if (blade == null) continue;
+
             float a = (angleOffset + i * step) * Mathf.Deg2Rad;
             Vector3 local = new(Mathf.Cos(a), Mathf.Sin(a), 0f);
-            blades[i].position = transform.position + local * orbitRadius;
-            blades[i].up = local;
+            blade.position = transform.position + local * orbitRadius;
+            blade.up = local;
         }
     }
 
@@ -77,6 +87,8 @@ public class RuneRing : MonoBehaviour
     {
         foreach (var blade in blades)
         {
+            if (blade == null) continue;
+
             var hits = Physics2D.OverlapCircleAll(blade.position, hitRadius);
             foreach (var h in hits)
             {
@@ -95,6 +107,7 @@ public class RuneRing : MonoBehaviour
 
         foreach (var e in enemies)
         {
+            if (e == null) continue;
             float d = Vector2.Distance(transform.position, e.transform.position);
             if (d < bestDist && d <= snapRange)
             {
@@ -107,9 +120,7 @@ public class RuneRing : MonoBehaviour
 
         var enemyStats = best.GetComponent<EnemyStats>();
         if (enemyStats != null)
-        {
             enemyStats.TakeDamage(snapDamage);
-        }
     }
 
     public void UnlockOrUpgrade()
@@ -145,11 +156,7 @@ public class RuneRing : MonoBehaviour
 
     private void RebuildBlades()
     {
-        for (int i = 0; i < blades.Count; i++)
-        {
-            if (blades[i] != null) Destroy(blades[i].gameObject);
-        }
-        blades.Clear();
+        ClearBlades();
 
         if (bladeVisualPrefab == null || bladeCount <= 0) return;
 
@@ -158,6 +165,20 @@ public class RuneRing : MonoBehaviour
             var go = Instantiate(bladeVisualPrefab, transform.position, Quaternion.identity);
             blades.Add(go.transform);
         }
+    }
+
+    private void ClearBlades()
+    {
+        for (int i = 0; i < blades.Count; i++)
+        {
+            if (blades[i] != null) Destroy(blades[i].gameObject);
+        }
+        blades.Clear();
+    }
+
+    private void RemoveDestroyedBlades()
+    {
+        blades.RemoveAll(b => b == null);
     }
 
 #if UNITY_EDITOR
