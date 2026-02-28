@@ -32,7 +32,11 @@ When you level up, the game pauses and waits for your card pick.
 ## 6) Layers
 (Optional) create `Player`, `Enemy`, `Projectile` layers for cleaner collision rules.
 
-## 7) Build APK
+## 7) Meta progression
+- Progress is saved with `PlayerPrefs` (coins + permanent upgrades).
+- On Game Over, you can buy upgrades and tap **Play Again**.
+
+## 8) Build APK
 - Install Android support from Unity Hub
 - Build Settings → Android → Switch Platform
 - Build

@@ -25,6 +25,7 @@ public class EnemyStats : MonoBehaviour
     private void Die()
     {
         XPSystem.Instance?.AddXP(xpReward);
+        GameManager.Instance?.RegisterKill();
         Destroy(gameObject);
     }
 }
