@@ -25,10 +25,14 @@ Create these GameObjects in `Game` scene:
 This version uses Unity classic input axes (`Horizontal`, `Vertical`).
 For mobile joystick later, map your joystick output to `PlayerController.SetInput(Vector2)`.
 
-## 5) Layers
+## 5) Level-up UI
+A built-in 3-card level-up overlay is included in `LevelUpSystem` (IMGUI).
+When you level up, the game pauses and waits for your card pick.
+
+## 6) Layers
 (Optional) create `Player`, `Enemy`, `Projectile` layers for cleaner collision rules.
 
-## 6) Build APK
+## 7) Build APK
 - Install Android support from Unity Hub
 - Build Settings → Android → Switch Platform
 - Build
