@@ -4,25 +4,47 @@ public class Spawner : MonoBehaviour
 {
     public GameObject enemyPrefab;
     public Transform player;
-    public float baseSpawnInterval = 1.2f;
-    public float minSpawnInterval = 0.25f;
-    public float difficultyRampPerMinute = 0.15f;
     public float spawnRadius = 12f;
 
+    [Header("Optional")]
+    public WaveDirector waveDirector;
+
     private float timer;
+
+    private void Start()
+    {
+        if (waveDirector == null)
+            waveDirector = FindObjectOfType<WaveDirector>();
+    }
 
     private void Update()
     {
         if (GameManager.Instance != null && GameManager.Instance.IsGameOver) return;
         if (enemyPrefab == null || player == null) return;
 
-        float minutes = Time.timeSinceLevelLoad / 60f;
-        float interval = Mathf.Max(minSpawnInterval, baseSpawnInterval - minutes * difficultyRampPerMinute);
+        float runTime = Time.timeSinceLevelLoad;
+        float interval;
+        int burst;
+
+        if (waveDirector != null)
+        {
+            interval = waveDirector.GetCurrentInterval(runTime);
+            burst = waveDirector.GetCurrentBurstCount(runTime);
+        }
+        else
+        {
+            // Fallback old behavior when no wave director is attached.
+            float minutes = runTime / 60f;
+            interval = Mathf.Max(0.25f, 1.2f - minutes * 0.15f);
+            burst = 1;
+        }
 
         timer -= Time.deltaTime;
         if (timer > 0f) return;
 
-        SpawnOne();
+        for (int i = 0; i < burst; i++)
+            SpawnOne();
+
         timer = interval;
     }
 

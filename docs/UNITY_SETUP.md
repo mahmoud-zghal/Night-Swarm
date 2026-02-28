@@ -5,6 +5,7 @@ Create these GameObjects in `Game` scene:
 - `GameManager` (attach `GameManager`)
 - `Player` (attach `PlayerController`, `PlayerStats`, `AutoAttack`, `RuneRing`)
 - `Spawner` (attach `Spawner`)
+- `WaveDirector` (attach `WaveDirector`)
 - `Main Camera` (optional follow script later)
 
 ## 2) Prefabs
@@ -19,7 +20,8 @@ Create these GameObjects in `Game` scene:
 ## 3) Script Wiring
 - In `AutoAttack`, assign projectile prefab and set fireRate (e.g. 1.5)
 - In `RuneRing`, assign `bladeVisualPrefab` (you can reuse projectile sprite as placeholder)
-- In `Spawner`, assign player transform and configure `enemies` array entries with your enemy prefabs + weights
+- In `Spawner`, assign enemy prefab + player transform (WaveDirector can auto-link)
+- In `WaveDirector`, tune spawn pacing and spike intensity (defaults are good for MVP)
 
 ## 4) Input
 This version uses Unity classic input axes (`Horizontal`, `Vertical`).
