@@ -10,6 +10,7 @@ public class LevelUpSystem : MonoBehaviour
     public float moveSpeedPerLevel = 0.1f;
 
     private PlayerStats player;
+    private AutoAttack autoAttack;
 
     private void Awake()
     {
@@ -24,7 +25,11 @@ public class LevelUpSystem : MonoBehaviour
     private void Start()
     {
         var playerGO = GameObject.FindGameObjectWithTag("Player");
-        if (playerGO != null) player = playerGO.GetComponent<PlayerStats>();
+        if (playerGO != null)
+        {
+            player = playerGO.GetComponent<PlayerStats>();
+            autoAttack = playerGO.GetComponent<AutoAttack>();
+        }
     }
 
     public void OfferUpgrades()
@@ -33,7 +38,7 @@ public class LevelUpSystem : MonoBehaviour
         // Replace with UI panel offering 3 choices.
         if (player == null) return;
 
-        int choice = Random.Range(0, 3);
+        int choice = Random.Range(0, 4);
         switch (choice)
         {
             case 0:
@@ -45,9 +50,15 @@ public class LevelUpSystem : MonoBehaviour
                 player.currentHp += hpPerLevel;
                 Debug.Log("Upgrade: MaxHP+");
                 break;
-            default:
+            case 2:
                 player.moveSpeed += moveSpeedPerLevel;
                 Debug.Log("Upgrade: MoveSpeed+");
+                break;
+            default:
+                if (autoAttack != null)
+                {
+                    autoAttack.AddMultiShot(1);
+                }
                 break;
         }
     }
