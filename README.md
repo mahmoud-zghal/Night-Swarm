@@ -27,8 +27,9 @@ This is a lightweight Unity MVP starter for a Survivor-like mobile game.
 - Enemy chase AI
 - Auto attack + projectiles
 - XP + leveling
-- Spawner with simple wave scaling
+- Spawner + wave director pacing
 - Basic game state manager
+- Main menu and upgrade hub controllers
 
 ## Notes
 This scaffold is intentionally simple so you can get a playable loop quickly, then iterate.
