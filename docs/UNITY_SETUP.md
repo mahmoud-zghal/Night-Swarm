@@ -36,7 +36,14 @@ When you level up, the game pauses and waits for your card pick.
 - Progress is saved with `PlayerPrefs` (coins + permanent upgrades).
 - On Game Over, you can buy upgrades and tap **Play Again**.
 
-## 8) Build APK
+## 8) Debug cheats (testing)
+- Add `DebugCheats` script to `GameManager` object.
+- Hotkeys in Play mode:
+  - `K` = kill player instantly
+  - `C` = add test coins
+  - `L` = force level up
+
+## 9) Build APK
 - Install Android support from Unity Hub
 - Build Settings → Android → Switch Platform
 - Build
