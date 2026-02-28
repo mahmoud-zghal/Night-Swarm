@@ -3,7 +3,7 @@
 ## 1) Scene Objects
 Create these GameObjects in `Game` scene:
 - `GameManager` (attach `GameManager`)
-- `Player` (attach `PlayerController`, `PlayerStats`, `AutoAttack`)
+- `Player` (attach `PlayerController`, `PlayerStats`, `AutoAttack`, `RuneRing`)
 - `Spawner` (attach `Spawner`)
 - `Main Camera` (optional follow script later)
 
@@ -18,7 +18,8 @@ Create these GameObjects in `Game` scene:
 
 ## 3) Script Wiring
 - In `AutoAttack`, assign projectile prefab and set fireRate (e.g. 1.5)
-- In `Spawner`, assign enemy prefab and player transform
+- In `RuneRing`, assign `bladeVisualPrefab` (you can reuse projectile sprite as placeholder)
+- In `Spawner`, assign player transform and configure `enemies` array entries with your enemy prefabs + weights
 
 ## 4) Input
 This version uses Unity classic input axes (`Horizontal`, `Vertical`).

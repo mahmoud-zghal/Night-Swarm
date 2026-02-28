@@ -11,6 +11,7 @@ public class LevelUpSystem : MonoBehaviour
 
     private PlayerStats player;
     private AutoAttack autoAttack;
+    private RuneRing runeRing;
 
     private void Awake()
     {
@@ -29,16 +30,17 @@ public class LevelUpSystem : MonoBehaviour
         {
             player = playerGO.GetComponent<PlayerStats>();
             autoAttack = playerGO.GetComponent<AutoAttack>();
+            runeRing = playerGO.GetComponent<RuneRing>();
         }
     }
 
     public void OfferUpgrades()
     {
-        // Placeholder: random auto-pick for MVP.
-        // Replace with UI panel offering 3 choices.
+        // Placeholder random picks for MVP.
+        // Later replace with 3-choice UI panel.
         if (player == null) return;
 
-        int choice = Random.Range(0, 4);
+        int choice = Random.Range(0, 5);
         switch (choice)
         {
             case 0:
@@ -54,11 +56,11 @@ public class LevelUpSystem : MonoBehaviour
                 player.moveSpeed += moveSpeedPerLevel;
                 Debug.Log("Upgrade: MoveSpeed+");
                 break;
+            case 3:
+                if (autoAttack != null) autoAttack.AddMultiShot(1);
+                break;
             default:
-                if (autoAttack != null)
-                {
-                    autoAttack.AddMultiShot(1);
-                }
+                if (runeRing != null) runeRing.UnlockOrUpgrade();
                 break;
         }
     }
