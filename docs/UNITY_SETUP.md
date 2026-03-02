@@ -20,7 +20,8 @@ Create these GameObjects in `Game` scene:
 ## 3) Script Wiring
 - In `AutoAttack`, assign projectile prefab and set fireRate (e.g. 1.5)
 - In `RuneRing`, assign `bladeVisualPrefab` (you can reuse projectile sprite as placeholder)
-- In `Spawner`, assign enemy prefab + player transform (WaveDirector can auto-link)
+- In `Spawner`, assign `basicPrefab`, `shardPrefab`, `wardenPrefab`, `echoPrefab` + player transform.
+- In each enemy prefab `EnemyStats`, set archetype (Basic/Shard/Warden/Echo).
 - In `WaveDirector`, tune spawn pacing and spike intensity (defaults are good for MVP)
 
 ## 4) Input
