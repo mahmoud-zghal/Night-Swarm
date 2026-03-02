@@ -122,6 +122,58 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &486498144
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 486498146}
+  - component: {fileID: 486498145}
+  m_Layer: 0
+  m_Name: WaveDirector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &486498145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486498144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9ee1a2724aa358439684e37297f70d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseSpawnInterval: 1.2
+  minSpawnInterval: 0.25
+  difficultyRampPerMinute: 0.15
+  spikeEverySeconds: 45
+  spikeDurationSeconds: 10
+  spikeSpawnMultiplier: 1.8
+  baseBurstCount: 1
+  maxBurstCount: 4
+--- !u!4 &486498146
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486498144}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &515504193
 GameObject:
   m_ObjectHideFlags: 0
@@ -136,6 +188,7 @@ GameObject:
   - component: {fileID: 515504199}
   - component: {fileID: 515504198}
   - component: {fileID: 515504197}
+  - component: {fileID: 515504200}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -252,6 +305,9 @@ MonoBehaviour:
   projectilePrefab: {fileID: 637968692072845885, guid: 0c855f62789a5964aad5cf69b607d04b, type: 3}
   fireRate: 1.5
   range: 8
+  projectileCount: 1
+  spreadAngle: 14
+  maxProjectileCount: 5
 --- !u!114 &515504198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,6 +336,30 @@ MonoBehaviour:
   currentHp: 0
   moveSpeed: 5
   damage: 120
+--- !u!114 &515504200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515504193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40a8da2e29143ea48b967686de878299, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bladeVisualPrefab: {fileID: 637968692072845885, guid: 0c855f62789a5964aad5cf69b607d04b, type: 3}
+  bladeCount: 0
+  maxBladeCount: 5
+  orbitRadius: 1.2
+  orbitSpeed: 140
+  contactDamage: 8
+  hitRadius: 0.2
+  damageTickInterval: 0.2
+  snapInterval: 3
+  minSnapInterval: 1.2
+  snapRange: 6
+  snapDamage: 20
 --- !u!1 &1066377173
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,10 +391,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 8958553987206060459, guid: ddefd49b96d05fb43bac64627e7d469a, type: 3}
   player: {fileID: 515504196}
-  baseSpawnInterval: 1.2
-  minSpawnInterval: 0.25
-  difficultyRampPerMinute: 0.15
   spawnRadius: 12
+  waveDirector: {fileID: 486498145}
 --- !u!4 &1066377175
 Transform:
   m_ObjectHideFlags: 0
@@ -340,6 +418,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1309846245}
   - component: {fileID: 1309846244}
+  - component: {fileID: 1309846246}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -374,6 +453,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1309846246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1309846243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef5710ff193532d4da7a239519fa23e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  killPlayerKey: 107
+  addCoinsKey: 99
+  levelUpKey: 108
+  coinsPerPress: 100
 --- !u!1 &1501997142
 GameObject:
   m_ObjectHideFlags: 0
@@ -571,3 +666,4 @@ SceneRoots:
   - {fileID: 2081621857}
   - {fileID: 1644547272}
   - {fileID: 1066377175}
+  - {fileID: 486498146}

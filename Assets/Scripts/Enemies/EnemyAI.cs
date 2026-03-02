@@ -24,12 +24,12 @@ public class EnemyAI : MonoBehaviour
     {
         if (target == null || (GameManager.Instance != null && GameManager.Instance.IsGameOver))
         {
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
             return;
         }
 
         Vector2 dir = ((Vector2)target.position - rb.position).normalized;
-        rb.velocity = dir * stats.moveSpeed;
+        rb.linearVelocity = dir * stats.moveSpeed;
     }
 
     private void OnCollisionStay2D(Collision2D other)
