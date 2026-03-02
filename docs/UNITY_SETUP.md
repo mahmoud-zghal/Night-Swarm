@@ -2,7 +2,7 @@
 
 ## 1) Scene Objects
 Create these GameObjects in `Game` scene:
-- `GameManager` (attach `GameManager`)
+- `GameManager` (attach `GameManager`, `RuntimeHUD`)
 - `Player` (attach `PlayerController`, `PlayerStats`, `AutoAttack`, `RuneRing`)
 - `Spawner` (attach `Spawner`)
 - `WaveDirector` (attach `WaveDirector`)
@@ -36,26 +36,29 @@ Recommended `PlayerController` values:
 A built-in 3-card level-up overlay is included in `LevelUpSystem` (IMGUI).
 When you level up, the game pauses and waits for your card pick.
 
-## 6) Layers
+## 6) Runtime HUD
+`RuntimeHUD` shows HP/XP bars, level, timer, and a top-right Pause/Resume button.
+
+## 7) Layers
 (Optional) create `Player`, `Enemy`, `Projectile` layers for cleaner collision rules.
 
-## 7) Meta progression
+## 8) Meta progression
 - Progress is saved with `PlayerPrefs` (coins + permanent upgrades).
 - On Game Over, you can buy upgrades and tap **Play Again**.
 
-## 8) Debug cheats (testing)
+## 9) Debug cheats (testing)
 - Add `DebugCheats` script to `GameManager` object.
 - Hotkeys in Play mode:
   - `K` = kill player instantly
   - `C` = add test coins
   - `L` = force level up
 
-## 9) Mobile playability setup
+## 10) Mobile playability setup
 - Add `MobileRuntimeSettings` to `GameManager` object.
 - In Player Settings set orientation to Landscape (or let runtime script force it).
 - If you use a Canvas HUD, put `SafeAreaFitter` on your root panel to avoid notches.
 
-## 10) Build APK
+## 11) Build APK
 - Install Android support from Unity Hub
 - Build Settings → Android → Switch Platform
 - Build
