@@ -40,6 +40,12 @@ When you level up, the game pauses and waits for your card pick.
 ## 6) Runtime HUD
 `RuntimeHUD` shows HP/XP bars, level, timer, and a top-right Pause/Resume button.
 
+## 6.1) Player hit feedback
+`PlayerStats` now includes short damage i-frames and red flash feedback.
+Tune values on Player:
+- `hitInvulnSeconds` (recommended 0.15–0.25)
+- `flashSeconds` (recommended 0.06–0.12)
+
 ## 7) Layers
 (Optional) create `Player`, `Enemy`, `Projectile` layers for cleaner collision rules.
 
