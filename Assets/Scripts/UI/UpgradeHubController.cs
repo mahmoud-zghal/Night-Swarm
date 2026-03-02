@@ -60,16 +60,23 @@ public class UpgradeHubController : MonoBehaviour
         GUI.Label(new Rect(panel.x + 20, y + 180, panel.width - 40, 30), status, line);
 
         if (GUI.Button(new Rect(x, y + 230, btnW, 44), "Back to Menu"))
+        {
+            AudioManager.Instance?.PlayUIClick();
             SceneManager.LoadScene(menuSceneName);
+        }
 
         if (GUI.Button(new Rect(x, y + 282, btnW, 44), "Play"))
+        {
+            AudioManager.Instance?.PlayUIClick();
             SceneManager.LoadScene(gameSceneName);
+        }
     }
 
     private void DrawUpgradeButton(Rect rect, string label, System.Func<bool> buyFn)
     {
         if (GUI.Button(rect, label))
         {
+            AudioManager.Instance?.PlayUIClick();
             bool ok = buyFn();
             status = ok ? "Upgrade purchased" : "Not enough coins";
         }

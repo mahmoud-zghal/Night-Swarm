@@ -33,6 +33,7 @@ public class XPSystem : MonoBehaviour
     {
         level++;
         xpToNext *= growthFactor;
+        AudioManager.Instance?.PlayLevelUp();
         LevelUpSystem.Instance?.OfferUpgrades();
         Debug.Log($"Level Up! -> {level}");
     }

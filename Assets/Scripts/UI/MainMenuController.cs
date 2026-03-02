@@ -39,13 +39,20 @@ public class MainMenuController : MonoBehaviour
         float y = panel.y + 130;
 
         if (GUI.Button(new Rect(x, y, btnW, 46), "Play"))
+        {
+            AudioManager.Instance?.PlayUIClick();
             SceneManager.LoadScene(gameSceneName);
+        }
 
         if (GUI.Button(new Rect(x, y + 58, btnW, 46), "Upgrades"))
+        {
+            AudioManager.Instance?.PlayUIClick();
             SceneManager.LoadScene(upgradeSceneName);
+        }
 
         if (GUI.Button(new Rect(x, y + 116, btnW, 46), "Quit"))
         {
+            AudioManager.Instance?.PlayUIClick();
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
 #else

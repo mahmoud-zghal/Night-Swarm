@@ -2,10 +2,10 @@
 
 ## 1) Scene Objects
 Create these GameObjects in `Game` scene:
-- `GameManager` (attach `GameManager`, `RuntimeHUD`)
+- `GameManager` (attach `GameManager`, `RuntimeHUD`, `AudioManager`)
 - `Player` (attach `PlayerController`, `PlayerStats`, `AutoAttack`, `RuneRing`)
 - `Spawner` (attach `Spawner`)
-- `WaveDirector` (attach `WaveDirector`)
+- `WaveDirector` (attach `WaveDirector`, `SurgeAudioNotifier`)
 - `Main Camera` (optional follow script later)
 
 ## 2) Prefabs
@@ -65,7 +65,17 @@ Tune values on Player:
 - In Player Settings set orientation to Landscape (or let runtime script force it).
 - If you use a Canvas HUD, put `SafeAreaFitter` on your root panel to avoid notches.
 
-## 11) Build APK
+## 11) Audio V1 setup
+Assign clips on `AudioManager`:
+- `hitClip`
+- `enemyDeathClip`
+- `levelUpClip`
+- `uiClickClip`
+- `surgeClip`
+
+`SurgeAudioNotifier` auto-plays surge SFX when WaveDirector enters a spike phase.
+
+## 12) Build APK
 - Install Android support from Unity Hub
 - Build Settings → Android → Switch Platform
 - Build

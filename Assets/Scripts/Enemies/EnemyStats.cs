@@ -39,6 +39,7 @@ public class EnemyStats : MonoBehaviour
     {
         XPSystem.Instance?.AddXP(xpReward);
         GameManager.Instance?.RegisterKill();
+        AudioManager.Instance?.PlayEnemyDeath();
         Destroy(gameObject);
     }
 

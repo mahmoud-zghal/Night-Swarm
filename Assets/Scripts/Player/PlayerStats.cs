@@ -45,6 +45,8 @@ public class PlayerStats : MonoBehaviour
         currentHp -= amount;
         invulnTimer = hitInvulnSeconds;
 
+        AudioManager.Instance?.PlayHit();
+
         if (sr != null)
         {
             sr.color = flashColor;
