@@ -24,8 +24,13 @@ Create these GameObjects in `Game` scene:
 - In `WaveDirector`, tune spawn pacing and spike intensity (defaults are good for MVP)
 
 ## 4) Input
-This version uses Unity classic input axes (`Horizontal`, `Vertical`).
-For mobile joystick later, map your joystick output to `PlayerController.SetInput(Vector2)`.
+- Desktop: Unity classic input axes (`Horizontal`, `Vertical`).
+- Mobile: built-in touch joystick in `PlayerController` (left side drag).
+
+Recommended `PlayerController` values:
+- `enableMobileTouchJoystick = true`
+- `joystickRadius = 90`
+- `deadZone = 0.15`
 
 ## 5) Level-up UI
 A built-in 3-card level-up overlay is included in `LevelUpSystem` (IMGUI).
@@ -45,7 +50,12 @@ When you level up, the game pauses and waits for your card pick.
   - `C` = add test coins
   - `L` = force level up
 
-## 9) Build APK
+## 9) Mobile playability setup
+- Add `MobileRuntimeSettings` to `GameManager` object.
+- In Player Settings set orientation to Landscape (or let runtime script force it).
+- If you use a Canvas HUD, put `SafeAreaFitter` on your root panel to avoid notches.
+
+## 10) Build APK
 - Install Android support from Unity Hub
 - Build Settings → Android → Switch Platform
 - Build
