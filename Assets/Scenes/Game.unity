@@ -370,7 +370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40a8da2e29143ea48b967686de878299, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bladeVisualPrefab: {fileID: 637968692072845885, guid: 0c855f62789a5964aad5cf69b607d04b, type: 3}
+  bladeVisualPrefab: {fileID: 637968692072845885, guid: 538d43842e70d294dbf774351f4eac48, type: 3}
   bladeCount: 0
   maxBladeCount: 5
   orbitRadius: 1.2
